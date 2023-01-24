@@ -1,17 +1,35 @@
-const { createApp } = 'Vue';
+const { createApp } = Vue;
 
 createApp({
-    data() {
-        return {
-            counter: 0
-        }
+  data() {
+    return {
+      counter: 0,
+      name: "",
+      lastname: "",
+      username: "",
+      birthdate: "",
+      users: [],
+    };
+  },
+  methods: {
+    randomPass() {
+      console.log(Math.random().toString(36).slice(2));
     },
-    methods: {
-        increment() {
-            this.counter++
-        },
+    addNewUser() {
+      const checkUserName = (element) => element.userName === this.username;
+      if (!this.users.some(checkUserName)) {
+        this.users.push({
+          name: this.name,
+          lastName: this.lastname,
+          fullName: `${this.name} ${this.lastname}`,
+          userName: this.username,
+          birthDate: this.birthdate,
+        });
+      }
+      this.randomPass();
     },
-    mounted() {
-        console.log('This is my initial state');
-    }
-}).mount('#root')
+  },
+  mounted() {
+    this.randomPass();
+  },
+}).mount("#root");
