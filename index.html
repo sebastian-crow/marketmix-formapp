@@ -74,23 +74,20 @@
                 </div>
               </div>
             </div>
-            <div class="mt-5 bg-white shadow cursor-pointer rounded-xl">
+            <div class="mt-5 bg-white shadow cursor-pointer rounded-xl" v-if="users.length > 0">
               <div class="flex">
-                <div class="flex-1 py-5 pl-5 overflow-hidden">
+                <div class="flex-1 py-5 pl-5 overflow-hidden" v-for="user in users">
                   <ul>
                     <li class="text-xs text-gray-600 uppercase">Usuario</li>
-                    <li>Nombre: {{name}}</li>
-                    <li>Apellido: {{lastname}}</li>
-                    <li>Usuario: {{username}}</li>
-                    <li>Fecha Nacimiento: {{birthdate}}</li>
+                    <li>Nombre: {{ user.name}}</li>
+                    <li>Apellido: {{ user.lastName }}</li>
+                    <li>Nombre Completo: {{ user.fullName }}</li>
+                    <li>Usuario: {{ user.userName }}</li>
+                    <li>Fecha Nacimiento: {{ user.birthdate }}</li>
+                    <li>Edad: {{ user.age }}</li>
                   </ul>
                 </div>
-                <div class="flex-1 py-5 pl-5 overflow-hidden">
-                    <ul>
-                      <li class="text-xs text-gray-600 uppercase">Usuarios</li>
-                      <li>{{users}}</li>
-                    </ul>
-                  </div>
+                
               </div>
             </div>
           </div>
