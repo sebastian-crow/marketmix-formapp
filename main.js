@@ -1,18 +1,14 @@
 const { createApp } = Vue;
 
-/* Vue.use(VeeValidate); */
-console.log("Vee-validate", VeeValidate);
-
-
 createApp({
   data() {
     return {
-      counter: 0,
       name: "",
       lastname: "",
       username: "",
       birthdate: "",
       users: [],
+      validationMessage: "",
     };
   },
   methods: {
@@ -39,7 +35,7 @@ createApp({
     },
     addNewUser() {
       const checkUserName = (element) => element.userName === this.username;
-      if (!this.users.some(checkUserName)) {
+      if (!this.users.some(checkUserName) && this.validation()) {
         this.users.push({
           name: this.name,
           lastName: this.lastname,
@@ -51,16 +47,21 @@ createApp({
         });
       }
     },
-  },
-  validations() {
-    return {
-      name: { required },
-      lastname: { required },
-      username: { required },
-      birthdate: { required },
-    };
+    validation() {
+      if (
+        this.name !== "" &&
+        this.lastname !== "" &&
+        this.username !== "" &&
+        this.birthdate !== ""
+      ) {
+        this.validationMessage = "";
+        return true;
+      } else {
+        this.validationMessage = "Por favor llena todos los campos";
+      }
+    },
   },
   mounted() {
-    this.randomPass(); // Working good
+    this.randomPass();
   },
 }).mount("#root");
