@@ -1,5 +1,9 @@
 const { createApp } = Vue;
 
+/* Vue.use(VeeValidate); */
+console.log("Vee-validate", VeeValidate);
+
+
 createApp({
   data() {
     return {
@@ -47,6 +51,14 @@ createApp({
         });
       }
     },
+  },
+  validations() {
+    return {
+      name: { required },
+      lastname: { required },
+      username: { required },
+      birthdate: { required },
+    };
   },
   mounted() {
     this.randomPass(); // Working good
